@@ -9,6 +9,9 @@ export default {
         sans: ['Nunito', ...defaultTheme.fontFamily.sans],
         nunito: ['Nunito'],
       },
+      colors: {
+        dark: '#222',
+      },
     },
   },
   plugins: [],
