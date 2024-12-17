@@ -28,6 +28,18 @@ class IncomeService {
   }
 
   /**
+   * Delete income through your index.
+   * @param incomeIndex Income index.
+   */
+  deleteIncome(incomeIndex: number): void {
+    this.incomes = this.incomes.filter((income, index) => index != incomeIndex)
+
+    localStorage.setItem(this.INCOME_KEY, JSON.stringify(this.incomes))
+
+    this.getDataFromLocalStorage()
+  }
+
+  /**
    * Get data from localStorage.
    */
   getDataFromLocalStorage(): void {

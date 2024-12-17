@@ -19,6 +19,11 @@
             <h1 class="text-xl text-white">Ingresos</h1>
           </router-link>
         </li>
+        <li>
+          <router-link to="/expenses">
+            <h1 class="text-xl text-white">Egresos</h1>
+          </router-link>
+        </li>
       </ul>
     </section>
   </nav>
