@@ -23,7 +23,6 @@ class ExpenseService {
   saveExpense(expense: Expense): void {
     let newExpenses = JSON.stringify([...this.expenses, expense])
     localStorage.setItem(this.EXPENSE_KEY, newExpenses)
-
     this.getDataFromLocalStorage()
   }
 
@@ -33,9 +32,7 @@ class ExpenseService {
    */
   deleteExpense(expenseIndex: number): void {
     this.expenses = this.expenses.filter((expense, index) => index != expenseIndex)
-
     localStorage.setItem(this.EXPENSE_KEY, JSON.stringify(this.expenses))
-
     this.getDataFromLocalStorage()
   }
 

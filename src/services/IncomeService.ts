@@ -23,7 +23,6 @@ class IncomeService {
   saveIncome(income: Income): void {
     let newIncomes = JSON.stringify([...this.incomes, income])
     localStorage.setItem(this.INCOME_KEY, newIncomes)
-
     this.getDataFromLocalStorage()
   }
 
@@ -33,9 +32,7 @@ class IncomeService {
    */
   deleteIncome(incomeIndex: number): void {
     this.incomes = this.incomes.filter((income, index) => index != incomeIndex)
-
     localStorage.setItem(this.INCOME_KEY, JSON.stringify(this.incomes))
-
     this.getDataFromLocalStorage()
   }
 
