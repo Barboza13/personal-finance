@@ -17,6 +17,16 @@ class ExpenseService {
   }
 
   /**
+   * Get expense by index.
+   * @param expenseIndex The index of expense to be sought.
+   * @returns {Expense | null} Returns the entry if found or null if not found.
+   */
+  getExpenseByIndex(expenseIndex: number): Expense | null {
+    const expense = this.expenses.find((_, index) => index === expenseIndex)
+    return expense ?? null
+  }
+
+  /**
    * Save new expense.
    * @param expense The expense to save.
    */
@@ -24,6 +34,16 @@ class ExpenseService {
     let newExpenses = JSON.stringify([...this.expenses, expense])
     localStorage.setItem(this.EXPENSE_KEY, newExpenses)
     this.getDataFromLocalStorage()
+  }
+
+  /**
+   * Update expense through your index.
+   * @param expense Expense to updated.
+   * @param index Index of expense to updated.
+   */
+  updateExpense(expense: Expense, index: number): void {
+    this.expenses[index] = expense
+    localStorage.setItem(this.EXPENSE_KEY, JSON.stringify(this.expenses))
   }
 
   /**

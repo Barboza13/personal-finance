@@ -1,25 +1,50 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import MainLayout from '@layouts/MainLayout.vue'
 import IncomeService from '@services/IncomeService'
 
 import type { Ref } from 'vue'
 import type { Income } from '@interfaces/interfaces'
 
+const route = useRoute()
+const indexParam: Ref<string | string[]> = ref('')
 const incomeService = new IncomeService()
-const incomes: Ref<Income[]> = ref([])
 const name: Ref<string> = ref('')
 const amount: Ref<number> = ref(0)
 
-onMounted(() => (incomes.value = incomeService.getIncomes()))
+onMounted(() => checkParams())
+
+const checkParams = (): void => {
+  indexParam.value = route.params.index
+
+  if (indexParam.value && !Array.isArray(indexParam.value)) {
+    const income = incomeService.getIncomeByIndex(parseInt(indexParam.value))
+
+    if (income) {
+      name.value = income.name
+      amount.value = income.amount
+    } else {
+      alert('¡Registro de ingreso no encontrado!')
+    }
+  }
+}
 
 const handleSubmit = (event: Event): void => {
   event.preventDefault()
 
-  incomeService.saveIncome({ name: name.value, amount: amount.value } as Income)
-
-  name.value = ''
-  amount.value = 0
+  if (indexParam.value && !Array.isArray(indexParam.value)) {
+    incomeService.updateIncome(
+      { name: name.value, amount: amount.value } as Income,
+      parseInt(indexParam.value),
+    )
+    name.value = ''
+    amount.value = 0
+  } else {
+    incomeService.saveIncome({ name: name.value, amount: amount.value } as Income)
+    name.value = ''
+    amount.value = 0
+  }
 }
 </script>
 
@@ -32,7 +57,8 @@ const handleSubmit = (event: Event): void => {
           @submit="handleSubmit"
         >
           <div>
-            <h1 class="text-3xl">Registrar Ingreso</h1>
+            <h1 v-if="indexParam == ''" class="text-3xl">Registrar Ingreso</h1>
+            <h1 v-else class="text-3xl">Actualizar Ingreso</h1>
           </div>
 
           <div class="flex flex-col justify-center items-center gap-4">
@@ -60,7 +86,16 @@ const handleSubmit = (event: Event): void => {
           </div>
 
           <div class="flex justify-center items-center w-full">
-            <button class="w-52 h-10 text-xl bg-green-500 rounded-md" type="submit">Guardar</button>
+            <button
+              v-if="indexParam == ''"
+              class="w-52 h-10 text-xl bg-green-500 rounded-md"
+              type="submit"
+            >
+              Guardar
+            </button>
+            <button v-else class="w-52 h-10 text-xl bg-green-500 rounded-md" type="submit">
+              Actualizar
+            </button>
           </div>
         </form>
       </section>

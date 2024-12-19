@@ -78,7 +78,7 @@ const updateExpenses = (): void => {
             >
               {{ income.name }} : {{ income.amount }}Gs.
               <div class="flex justify-center items-center gap-2">
-                <EditButton />
+                <EditButton :service="'income'" :index="index" />
                 <DeleteButton :service="'income'" :index="index" @updateData="updateIncomes" />
               </div>
             </li>
@@ -102,7 +102,7 @@ const updateExpenses = (): void => {
             >
               {{ expense.name }} : {{ expense.amount }}Gs.
               <div class="flex justify-center items-center gap-2">
-                <EditButton />
+                <EditButton service="'expense'" :index="index" />
                 <DeleteButton :service="'expense'" :index="index" @updateData="updateExpenses" />
               </div>
             </li>

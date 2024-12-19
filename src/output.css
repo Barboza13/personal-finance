@@ -602,10 +602,6 @@ video {
   width: 100%;
 }
 
-.list-disc {
-  list-style-type: disc;
-}
-
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
@@ -682,10 +678,6 @@ video {
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
-
-.text-center {
-  text-align: center;
 }
 
 .text-2xl {
