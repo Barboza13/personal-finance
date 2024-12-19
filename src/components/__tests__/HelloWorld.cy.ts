@@ -1,12 +1,8 @@
-import HelloWorld from '../HelloWorld.vue'
+import HomeView from '@views/HomeView.vue'
 
-describe('HelloWorld', () => {
-  it('playground', () => {
-    cy.mount(HelloWorld, { props: { msg: 'Hello Cypress' } })
-  })
-
-  it('renders properly', () => {
-    cy.mount(HelloWorld, { props: { msg: 'Hello Cypress' } })
-    cy.get('h1').should('contain', 'Hello Cypress')
+describe('HomeView', () => {
+  it('Check project root', () => {
+    cy.mount(HomeView, { props: { msg: 'Hello Cypress' } })
+    cy.contains('h1', 'Lista de ingresos')
   })
 })
