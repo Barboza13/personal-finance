@@ -14,6 +14,7 @@
       "@layouts/*": ["./src/layouts/*"],
       "@services/*": ["./src/services/*"],
       "@interfaces/*": ["src/interfaces/*"],
+      "@transitions/*": ["src/transitions/*"],
       "@assets/*": ["./src/assets/*"],
       "@images/*": ["./src/assets/images/*"],
       "@icons/*": ["./src/assets/icons/*"]

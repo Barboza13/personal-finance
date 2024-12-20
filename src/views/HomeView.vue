@@ -4,7 +4,7 @@ import MainLayout from '@layouts/MainLayout.vue'
 import IncomeService from '@services/IncomeService'
 import ExpenseService from '@services/ExpenseService'
 import EditButton from '@components/EditButton.vue'
-import DeleteButton from '@components/DeleteButton.vue'
+import DeleteModal from '@components/DeleteModal.vue'
 
 import type { Ref } from 'vue'
 import type { Expense, Income } from '@interfaces/interfaces'
@@ -13,6 +13,9 @@ const incomeService: Ref<IncomeService | null> = ref(null)
 const expenseService: Ref<ExpenseService | null> = ref(null)
 const incomes: Ref<Income[]> = ref([])
 const expenses: Ref<Expense[]> = ref([])
+const isModalVisible: Ref<boolean> = ref(false)
+const serviceType: Ref<string> = ref('')
+const currentIndex: Ref<number | null> = ref(null)
 let totalIncomes: Ref<number> = ref(0)
 let totalExpenses: Ref<number> = ref(0)
 let balanceSheet: Ref<number> = ref(0)
@@ -45,6 +48,18 @@ const updateExpenses = (): void => {
   expenseService.value = new ExpenseService()
   expenses.value = expenseService.value.getExpenses()
 }
+
+const showDeleteModal = (service: string, index: number | null): void => {
+  if (index === null) {
+    alert('¡El indice no puede ser nulo!')
+    return
+  }
+
+  serviceType.value = service
+  currentIndex.value = index
+  isModalVisible.value = true
+}
+const hideDeleteModal = (): boolean => (isModalVisible.value = false)
 </script>
 
 <template>
@@ -79,7 +94,12 @@ const updateExpenses = (): void => {
               {{ income.name }} : {{ income.amount }}Gs.
               <div class="flex justify-center items-center gap-2">
                 <EditButton :service="'income'" :index="index" />
-                <DeleteButton :service="'income'" :index="index" @updateData="updateIncomes" />
+                <button
+                  class="w-8 h-8 bg-red-500 hover:bg-red-600 rounded-md"
+                  @click="showDeleteModal('income', index)"
+                >
+                  <v-icon name="md-delete" fill="white" scale="1.3" />
+                </button>
               </div>
             </li>
           </ul>
@@ -103,7 +123,12 @@ const updateExpenses = (): void => {
               {{ expense.name }} : {{ expense.amount }}Gs.
               <div class="flex justify-center items-center gap-2">
                 <EditButton service="'expense'" :index="index" />
-                <DeleteButton :service="'expense'" :index="index" @updateData="updateExpenses" />
+                <button
+                  class="w-8 h-8 bg-red-500 hover:bg-red-600 rounded-md"
+                  @click="showDeleteModal('expense', index)"
+                >
+                  <v-icon name="md-delete" fill="white" scale="1.3" />
+                </button>
               </div>
             </li>
           </ul>
@@ -111,6 +136,14 @@ const updateExpenses = (): void => {
       </section>
     </template>
   </MainLayout>
+  <DeleteModal
+    :isVisible="isModalVisible"
+    :service="serviceType"
+    :index="currentIndex ?? -1"
+    @updateIncomes="updateIncomes"
+    @updateExpenses="updateExpenses"
+    @hideDeleteModal="hideDeleteModal"
+  />
 </template>
 
 <style scoped></style>

@@ -16,6 +16,7 @@ export default defineConfig({
       '@layouts': path.resolve(__dirname, './src/layouts'),
       '@services': path.resolve(__dirname, './src/services'),
       '@interfaces': path.resolve(__dirname, './src/interfaces'),
+      '@transitions': path.resolve(__dirname, './src/transitions'),
       '@assets': path.resolve(__dirname, './src/assets'),
       '@images': path.resolve(__dirname, './src/assets/images'),
       '@icons': path.resolve(__dirname, './src/assets/icons'),
