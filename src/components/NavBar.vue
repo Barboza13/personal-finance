@@ -24,6 +24,11 @@
             <h1 class="text-xl text-white">Egresos</h1>
           </router-link>
         </li>
+        <li>
+          <router-link to="/charts">
+            <h1 class="text-xl text-white">Graficos</h1>
+          </router-link>
+        </li>
       </ul>
     </section>
   </nav>
