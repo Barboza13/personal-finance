@@ -40,11 +40,11 @@ onMounted(() => showChart())
 <template>
   <MainLayout>
     <template #default>
-      <section class="flex justify-center items-center w-full h-[20%]">
+      <section class="flex justify-center items-center w-full h-[10%]">
         <h1>Vista de graficos</h1>
       </section>
-      <section class="flex justify-center items-center w-full h-[80%]">
-        <canvas id="myChart"></canvas>
+      <section class="flex justify-center items-center w-full h-[90%]">
+        <canvas style="width: 50%; height: 50%" id="myChart"></canvas>
       </section>
     </template>
   </MainLayout>

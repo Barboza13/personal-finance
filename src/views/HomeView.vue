@@ -65,7 +65,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
 <template>
   <MainLayout>
     <template #default>
-      <section class="flex justify-center items-center w-full h-14 border-b-2 border-cyan-800">
+      <section class="flex justify-center items-center w-full h-[10%] border-b-2 border-cyan-800">
         <h1 class="text-2xl">
           Balance general:
           <span v-if="balanceSheet >= 0" class="text-green-500">{{ balanceSheet }}Gs.</span>
@@ -73,7 +73,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
         </h1>
       </section>
 
-      <section class="grid grid-cols-1 lg:grid-cols-2 w-full lg:h-screen">
+      <section class="grid grid-cols-1 lg:grid-cols-2 w-full h-[90%]">
         <article
           class="flex flex-col justify-start items-center lg:w-full h-full border-r-2 border-cyan-800"
         >

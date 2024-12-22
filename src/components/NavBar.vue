@@ -1,7 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
-  <nav class="flex justify-around items-center h-16 bg-cyan-800">
+  <nav class="flex justify-around items-center h-full bg-cyan-800">
     <section>
       <router-link to="/">
         <h1 class="text-3xl text-white">PersonalFinance</h1>

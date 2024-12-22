@@ -51,7 +51,7 @@ const handleSubmit = (event: Event): void => {
 <template>
   <MainLayout>
     <template #default>
-      <section class="flex justify-center items-center w-full lg:h-screen">
+      <section class="flex justify-center items-center w-full lg:h-full">
         <form
           class="flex flex-col justify-between items-center w-[50%] h-[500px] text-white bg-cyan-800 rounded-md py-4"
           @submit="handleSubmit"
