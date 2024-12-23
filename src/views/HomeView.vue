@@ -91,7 +91,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
               v-for="(income, index) in incomes"
               :key="index"
             >
-              {{ income.name }} : {{ income.amount }}Gs.
+              {{ income.date }} : {{ income.name }} : {{ income.amount }}Gs.
               <div class="flex justify-center items-center gap-2">
                 <EditButton :service="'income'" :index="index" />
                 <button
@@ -120,7 +120,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
               v-for="(expense, index) in expenses"
               :key="index"
             >
-              {{ expense.name }} : {{ expense.amount }}Gs.
+              {{ expense.date }} : {{ expense.name }} : {{ expense.amount }}Gs.
               <div class="flex justify-center items-center gap-2">
                 <EditButton service="'expense'" :index="index" />
                 <button

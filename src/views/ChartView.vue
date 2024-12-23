@@ -2,29 +2,53 @@
 import { onMounted } from 'vue'
 import Chart from 'chart.js/auto'
 import MainLayout from '@layouts/MainLayout.vue'
+import IncomeService from '@services/IncomeService'
+import ExpenseService from '@services/ExpenseService'
+import { sortRecordByDate } from '@utils/utils'
+
+import type { Expense, Income } from '@interfaces/interfaces'
+
+const incomeService = new IncomeService()
+const expenseService = new ExpenseService()
+const incomes: Income[] = incomeService.getIncomes()
+const expenses: Expense[] = expenseService.getExpenses()
+
+const sortedRecords: Income[] | Expense[] = sortRecordByDate([...incomes, ...expenses])
+
+const alignedIncomes = Array.from(new Set([...sortedRecords.map((record) => record.date)])).map(
+  (date) => {
+    const record = incomes.find((income) => income.date === date)
+    return record ? record.amount : 0
+  },
+)
+
+const alignedExpenses = Array.from(new Set([...sortedRecords.map((record) => record.date)])).map(
+  (date) => {
+    const record = expenses.find((expense) => expense.date === date)
+    return record ? record.amount : 0
+  },
+)
 
 const showChart = (): void => {
   const myChart = document.getElementById('myChart') as HTMLCanvasElement | null
 
-  const data = [
-    { year: 2010, count: 10 },
-    { year: 2011, count: 20 },
-    { year: 2012, count: 15 },
-    { year: 2013, count: 25 },
-    { year: 2014, count: 22 },
-    { year: 2015, count: 30 },
-    { year: 2016, count: 28 },
-  ]
-
   if (myChart) {
     new Chart(myChart, {
-      type: 'bar',
+      type: 'line',
       data: {
-        labels: data.map((row) => row.year),
+        labels: Array.from(new Set([...sortedRecords.map((record) => record.date)])),
         datasets: [
+          // Incomes chart
           {
-            label: 'Acquisitions by year',
-            data: data.map((row) => row.count),
+            label: 'Ingresos',
+            data: alignedIncomes,
+            borderColor: 'rgb(0, 255, 0)', // Green color
+          },
+          // Expenses chart
+          {
+            label: 'Egresos',
+            data: alignedExpenses,
+            borderColor: 'rgb(255, 0, 0)', // Red color
           },
         ],
       },
@@ -43,8 +67,10 @@ onMounted(() => showChart())
       <section class="flex justify-center items-center w-full h-[10%]">
         <h1>Vista de graficos</h1>
       </section>
-      <section class="flex justify-center items-center w-full h-[90%]">
-        <canvas style="width: 50%; height: 50%" id="myChart"></canvas>
+      <section class="flex justify-center items-start w-full h-[90%]">
+        <div class="flex justify-center items-center w-[80%] h-[80%]">
+          <canvas id="myChart"></canvas>
+        </div>
       </section>
     </template>
   </MainLayout>
