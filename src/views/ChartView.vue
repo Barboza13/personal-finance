@@ -4,30 +4,15 @@ import Chart from 'chart.js/auto'
 import MainLayout from '@layouts/MainLayout.vue'
 import IncomeService from '@services/IncomeService'
 import ExpenseService from '@services/ExpenseService'
-import { sortRecordByDate } from '@utils/utils'
+import { sortRecordsByDate } from '@utils/utils'
 
-import type { Expense, Income } from '@interfaces/interfaces'
+import type { Expense, Income, Record } from '@interfaces/interfaces'
 
 const incomeService = new IncomeService()
 const expenseService = new ExpenseService()
 const incomes: Income[] = incomeService.getIncomes()
 const expenses: Expense[] = expenseService.getExpenses()
-
-const sortedRecords: Income[] | Expense[] = sortRecordByDate([...incomes, ...expenses])
-
-const alignedIncomes = Array.from(new Set([...sortedRecords.map((record) => record.date)])).map(
-  (date) => {
-    const record = incomes.find((income) => income.date === date)
-    return record ? record.amount : 0
-  },
-)
-
-const alignedExpenses = Array.from(new Set([...sortedRecords.map((record) => record.date)])).map(
-  (date) => {
-    const record = expenses.find((expense) => expense.date === date)
-    return record ? record.amount : 0
-  },
-)
+const sortedRecords: Record[] = sortRecordsByDate(incomes, expenses)
 
 const showChart = (): void => {
   const myChart = document.getElementById('myChart') as HTMLCanvasElement | null
@@ -36,18 +21,18 @@ const showChart = (): void => {
     new Chart(myChart, {
       type: 'line',
       data: {
-        labels: Array.from(new Set([...sortedRecords.map((record) => record.date)])),
+        labels: sortedRecords.map((_, index) => index + 1),
         datasets: [
           // Incomes chart
           {
             label: 'Ingresos',
-            data: alignedIncomes,
+            data: incomes.map((income) => income.amount),
             borderColor: 'rgb(0, 255, 0)', // Green color
           },
           // Expenses chart
           {
             label: 'Egresos',
-            data: alignedExpenses,
+            data: expenses.map((expense) => expense.amount),
             borderColor: 'rgb(255, 0, 0)', // Red color
           },
         ],

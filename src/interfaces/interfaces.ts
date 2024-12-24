@@ -9,3 +9,7 @@ export interface Expense {
   amount: number
   date: string
 }
+
+export interface Record {
+  item: Income | Expense
+}
