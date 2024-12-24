@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, computed } from 'vue'
 import MainLayout from '@layouts/MainLayout.vue'
 import IncomeService from '@services/IncomeService'
 import ExpenseService from '@services/ExpenseService'
@@ -18,7 +18,7 @@ const serviceType: Ref<string> = ref('')
 const currentIndex: Ref<number | null> = ref(null)
 let totalIncomes: Ref<number> = ref(0)
 let totalExpenses: Ref<number> = ref(0)
-let balanceSheet: Ref<number> = ref(0)
+let balanceSheet: Ref<number> = computed(() => totalIncomes.value - totalExpenses.value)
 
 onMounted(() => {
   incomeService.value = new IncomeService()
@@ -35,7 +35,6 @@ watch(incomes, (newIncomes) => {
 
 watch(expenses, (newExpenses) => {
   totalExpenses.value = newExpenses.reduce((sum, expense) => sum + expense.amount, 0)
-  balanceSheet.value = totalIncomes.value - totalExpenses.value
 })
 
 // A new instance of the services is needed to update the incomes and expenses.
@@ -68,7 +67,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
       <section class="flex justify-center items-center w-full h-[10%] border-b-2 border-cyan-800">
         <h1 class="text-2xl">
           Balance general:
-          <span v-if="balanceSheet >= 0" class="text-green-500">{{ balanceSheet }}Gs.</span>
+          <span v-if="balanceSheet >= 0" class="text-green-500">+{{ balanceSheet }}Gs.</span>
           <span v-else class="text-red-500">{{ balanceSheet }}Gs.</span>
         </h1>
       </section>
