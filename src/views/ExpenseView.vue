@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed, onUpdated } from 'vue'
 import { useRoute } from 'vue-router'
 import MainLayout from '@layouts/MainLayout.vue'
 import ExpenseService from '@services/ExpenseService'
@@ -8,17 +8,16 @@ import type { Ref } from 'vue'
 import type { Expense } from '@interfaces/interfaces'
 
 const route = useRoute()
-const indexParam: Ref<string | string[]> = ref('')
+const indexParam = computed(() => route.params.index)
 const expenseService = new ExpenseService()
 const name: Ref<string> = ref('')
 const amount: Ref<number> = ref(0)
 const date: Ref<string> = ref('')
 
 onMounted(() => checkParams())
+onUpdated(() => checkParams())
 
 const checkParams = (): void => {
-  indexParam.value = route.params.index
-
   if (indexParam.value && !Array.isArray(indexParam.value)) {
     const expense = expenseService.getExpenseByIndex(parseInt(indexParam.value))
 
@@ -29,6 +28,10 @@ const checkParams = (): void => {
     } else {
       alert('¡Registro de egreso no encontrado!')
     }
+  } else {
+    name.value = ''
+    amount.value = 0
+    date.value = ''
   }
 }
 
