@@ -5,47 +5,45 @@ import IncomeService from '@services/IncomeService'
 import ExpenseService from '@services/ExpenseService'
 import EditButton from '@components/EditButton.vue'
 import DeleteModal from '@components/DeleteModal.vue'
+import { sortRecordsByDate } from '@utils/utils'
 
 import type { Ref } from 'vue'
-import type { Expense, Income } from '@interfaces/interfaces'
+import type { Record } from '@interfaces/interfaces'
 
-const incomeService: Ref<IncomeService | null> = ref(null)
-const expenseService: Ref<ExpenseService | null> = ref(null)
-const incomes: Ref<Income[]> = ref([])
-const expenses: Ref<Expense[]> = ref([])
+const incomeService: IncomeService = new IncomeService()
+const expenseService: ExpenseService = new ExpenseService()
+const incomes: Ref<Record[]> = ref([])
+const expenses: Ref<Record[]> = ref([])
 const isModalVisible: Ref<boolean> = ref(false)
 const serviceType: Ref<string> = ref('')
 const currentIndex: Ref<number | null> = ref(null)
-let totalIncomes: Ref<number> = ref(0)
-let totalExpenses: Ref<number> = ref(0)
-let balanceSheet: Ref<number> = computed(() => totalIncomes.value - totalExpenses.value)
+const totalIncomes: Ref<number> = ref(0)
+const totalExpenses: Ref<number> = ref(0)
+const balanceSheet: Ref<number> = computed(() => totalIncomes.value - totalExpenses.value)
 
 onMounted(() => {
-  incomeService.value = new IncomeService()
-  incomes.value = incomeService.value.getIncomes()
-
-  expenseService.value = new ExpenseService()
-  expenses.value = expenseService.value.getExpenses()
+  incomes.value = sortRecordsByDate(incomeService.getIncomes())
+  expenses.value = sortRecordsByDate(expenseService.getExpenses())
 })
 
 // The watchs is needed to access the incomes and expenses variables after the component is mounted.
 watch(incomes, (newIncomes) => {
-  totalIncomes.value = newIncomes.reduce((sum, income) => sum + income.amount, 0)
+  totalIncomes.value = newIncomes.reduce((sum, income) => sum + income.item.amount, 0)
 })
 
 watch(expenses, (newExpenses) => {
-  totalExpenses.value = newExpenses.reduce((sum, expense) => sum + expense.amount, 0)
+  totalExpenses.value = newExpenses.reduce((sum, expense) => sum + expense.item.amount, 0)
 })
 
 // A new instance of the services is needed to update the incomes and expenses.
 const updateIncomes = (): void => {
-  incomeService.value = new IncomeService()
-  incomes.value = incomeService.value.getIncomes()
+  const incomeService = new IncomeService()
+  incomes.value = sortRecordsByDate(incomeService.getIncomes())
 }
 
 const updateExpenses = (): void => {
-  expenseService.value = new ExpenseService()
-  expenses.value = expenseService.value.getExpenses()
+  const expenseService = new ExpenseService()
+  expenses.value = sortRecordsByDate(expenseService.getExpenses())
 }
 
 const showDeleteModal = (service: string, index: number | null): void => {
@@ -90,7 +88,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
               v-for="(income, index) in incomes"
               :key="index"
             >
-              {{ income.date }} : {{ income.name }} : {{ income.amount }}Gs.
+              {{ income.item.date }} : {{ income.item.name }} : {{ income.item.amount }}Gs.
               <div class="flex justify-center items-center gap-2">
                 <EditButton :service="'income'" :index="index" />
                 <button
@@ -119,7 +117,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
               v-for="(expense, index) in expenses"
               :key="index"
             >
-              {{ expense.date }} : {{ expense.name }} : {{ expense.amount }}Gs.
+              {{ expense.item.date }} : {{ expense.item.name }} : {{ expense.item.amount }}Gs.
               <div class="flex justify-center items-center gap-2">
                 <EditButton service="'expense'" :index="index" />
                 <button
