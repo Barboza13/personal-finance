@@ -5,7 +5,14 @@ import IncomeService from '@services/IncomeService'
 import ExpenseService from '@services/ExpenseService'
 import EditButton from '@components/EditButton.vue'
 import DeleteModal from '@components/DeleteModal.vue'
-import { sortRecordsByDate } from '@utils/utils'
+import FilterButton from '@components/FilterButton.vue'
+import {
+  sortRecordsByDate,
+  sortRecordsByHighestAmount,
+  sortRecordsByLowestAmount,
+  sortRecordsDescending,
+  sortRecordsAscending,
+} from '@utils/utils'
 
 import type { Ref } from 'vue'
 import type { Record } from '@interfaces/interfaces'
@@ -78,9 +85,27 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
             <h1 class="text-3xl">Lista de ingresos</h1>
           </div>
           <div
-            class="flex justify-start items-center w-full h-10 border-b-2 border-cyan-800 lg:pl-2"
+            class="flex justify-between items-center w-full h-10 border-b-2 border-cyan-800 lg:pl-2"
           >
             <h1 class="text-xl">Total: {{ totalIncomes }}Gs.</h1>
+            <div class="flex justify-center items-center gap-2 mr-2">
+              <FilterButton
+                icon="bi-graph-up"
+                @filterFunction="() => (incomes = sortRecordsByHighestAmount(incomes))"
+              />
+              <FilterButton
+                icon="bi-graph-down"
+                @filterFunction="() => (incomes = sortRecordsByLowestAmount(incomes))"
+              />
+              <FilterButton
+                icon="hi-solid-sort-descending"
+                @filterFunction="() => (incomes = sortRecordsDescending(incomes))"
+              />
+              <FilterButton
+                icon="hi-solid-sort-ascending"
+                @filterFunction="() => (incomes = sortRecordsAscending(incomes))"
+              />
+            </div>
           </div>
           <ul class="w-full lg:px-4">
             <li
@@ -107,9 +132,27 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
             <h1 class="text-3xl">Lista de egresos</h1>
           </div>
           <div
-            class="flex justify-start items-center w-full h-10 border-b-2 border-cyan-800 lg:pl-2"
+            class="flex justify-between items-center w-full h-10 border-b-2 border-cyan-800 lg:pl-2"
           >
             <h1 class="text-xl">Total: {{ totalExpenses }}Gs.</h1>
+            <div class="flex justify-center items-center gap-2 mr-2">
+              <FilterButton
+                icon="bi-graph-up"
+                @filterFunction="() => (expenses = sortRecordsByHighestAmount(expenses))"
+              />
+              <FilterButton
+                icon="bi-graph-down"
+                @filterFunction="() => (expenses = sortRecordsByLowestAmount(expenses))"
+              />
+              <FilterButton
+                icon="hi-solid-sort-descending"
+                @filterFunction="() => (expenses = sortRecordsDescending(expenses))"
+              />
+              <FilterButton
+                icon="hi-solid-sort-ascending"
+                @filterFunction="() => (expenses = sortRecordsAscending(expenses))"
+              />
+            </div>
           </div>
           <ul class="w-full lg:px-4">
             <li
