@@ -16,6 +16,7 @@ import {
 
 import type { Ref } from 'vue'
 import type { Record } from '@interfaces/interfaces'
+import ShowModalTransition from '@transitions/ShowModalTransition.vue'
 
 const incomeService: IncomeService = new IncomeService()
 const expenseService: ExpenseService = new ExpenseService()
@@ -174,16 +175,19 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
           </ul>
         </article>
       </section>
+
+      <ShowModalTransition>
+        <DeleteModal
+          v-if="isModalVisible"
+          :service="serviceType"
+          :index="currentIndex ?? -1"
+          @updateIncomes="updateIncomes"
+          @updateExpenses="updateExpenses"
+          @hideDeleteModal="hideDeleteModal"
+        />
+      </ShowModalTransition>
     </template>
   </MainLayout>
-  <DeleteModal
-    :isVisible="isModalVisible"
-    :service="serviceType"
-    :index="currentIndex ?? -1"
-    @updateIncomes="updateIncomes"
-    @updateExpenses="updateExpenses"
-    @hideDeleteModal="hideDeleteModal"
-  />
 </template>
 
 <style scoped></style>
