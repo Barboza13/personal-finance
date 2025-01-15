@@ -9,7 +9,7 @@ import NavBar from '@components/NavBar.vue'
     </slot>
   </header>
   <main class="w-full h-[90vh]">
-    <slot></slot>
+    <slot />
   </main>
 </template>
 

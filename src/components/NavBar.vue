@@ -8,25 +8,25 @@
       </router-link>
     </section>
     <section>
-      <ul class="flex justify-center items-center gap-2">
+      <ul class="flex justify-center items-center md:gap-2">
         <li>
           <router-link to="/">
-            <h1 class="text-xl text-white">Inicio</h1>
+            <h1 class="text-md md:text-xl text-white">Inicio</h1>
           </router-link>
         </li>
         <li>
           <router-link to="/incomes">
-            <h1 class="text-xl text-white">Ingresos</h1>
+            <h1 class="text-md md:text-xl text-white">Ingresos</h1>
           </router-link>
         </li>
         <li>
           <router-link to="/expenses">
-            <h1 class="text-xl text-white">Egresos</h1>
+            <h1 class="text-md md:text-xl text-white">Egresos</h1>
           </router-link>
         </li>
         <li>
           <router-link to="/charts">
-            <h1 class="text-xl text-white">Graficos</h1>
+            <h1 class="text-md md:text-xl text-white">Graficos</h1>
           </router-link>
         </li>
       </ul>

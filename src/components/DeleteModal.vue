@@ -32,7 +32,7 @@ const handleDelete = (index: number): void => {
 
 <template>
   <div
-    class="flex flex-col justify-around items-center w-[80%] md:w-[40%] h-32 md:h-44 absolute top-32 left-[70px] md:left-[405px] bg-cyan-800 opacity-100 rounded-md z-[1000]"
+    class="flex flex-col justify-around items-center w-[80%] md:w-[40%] h-32 md:h-44 top-32 absolute left-[45px] md:left-[405px] bg-cyan-800 opacity-100 rounded-md z-[1000]"
   >
     <h1 class="text-xl md:text-2xl text-white">¿Seguro que desea eliminar el registro?</h1>
     <div class="flex gap-4">

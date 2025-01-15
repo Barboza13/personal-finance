@@ -80,7 +80,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
 
       <section class="grid grid-cols-1 lg:grid-cols-2 w-full h-[90%]">
         <article
-          class="flex flex-col justify-start items-center lg:w-full h-full border-r-2 border-cyan-800"
+          class="flex flex-col justify-start items-center w-full h-full border-r-2 border-cyan-800"
         >
           <div class="flex justify-center items-center w-full h-10">
             <h1 class="text-3xl">Lista de ingresos</h1>
@@ -128,7 +128,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
           </ul>
         </article>
 
-        <article class="flex flex-col justify-start items-center lg:w-full h-full">
+        <article class="flex flex-col justify-start items-center w-full h-full">
           <div class="flex justify-center items-center w-full h-10">
             <h1 class="text-3xl">Lista de egresos</h1>
           </div>
