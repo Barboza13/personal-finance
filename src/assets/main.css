@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Nunito';
+  font-family: inter;
   src:
-    url('/fonts/Nunito-Italic-VariableFont_wght.ttf') format('ttf'),
-    url('/fonts/Nunito-VariableFont_wght.ttf') format('ttf');
+    url('/fonts/Inter-Italic-VariableFont_opsz,wght.ttf') format('ttf'),
+    url('/fonts/Inter-VariableFont_opsz,wght.ttf') format('ttf');
   font-weight: normal;
   font-style: normal;
 }

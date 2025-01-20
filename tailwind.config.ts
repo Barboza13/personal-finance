@@ -6,8 +6,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Nunito', ...defaultTheme.fontFamily.sans],
-        nunito: ['Nunito'],
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        inter: ['Inter'],
       },
       colors: {
         dark: '#222',
