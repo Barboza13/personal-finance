@@ -2,13 +2,13 @@
 
 <template>
   <nav class="flex justify-around items-center w-full h-full bg-cyan-800">
-    <section>
+    <section class="flex justify-center md:justify-normal w-full md:w-0">
       <router-link to="/">
         <h1 class="text-3xl text-white">PersonalFinance</h1>
       </router-link>
     </section>
     <section>
-      <ul class="flex justify-center items-center md:gap-2">
+      <ul class="hidden md:flex justify-center items-center md:gap-2">
         <li>
           <router-link to="/">
             <h1 class="text-md md:text-xl text-white">Inicio</h1>

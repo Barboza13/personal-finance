@@ -11,9 +11,20 @@ import {
   HiSolidSortAscending,
   BiGraphDown,
   BiGraphUp,
+  HiMenu,
+  IoClose,
 } from 'oh-vue-icons/icons'
 
-addIcons(FaEdit, MdDelete, HiSolidSortDescending, HiSolidSortAscending, BiGraphDown, BiGraphUp)
+addIcons(
+  FaEdit,
+  MdDelete,
+  HiSolidSortDescending,
+  HiSolidSortAscending,
+  BiGraphDown,
+  BiGraphUp,
+  HiMenu,
+  IoClose,
+)
 
 const app = createApp(App)
 app.component('v-icon', OhVueIcon)
