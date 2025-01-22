@@ -62,9 +62,9 @@ const handleSubmit = (event: Event): void => {
 <template>
   <MainLayout>
     <template #default>
-      <section class="flex justify-center items-center w-full lg:h-full">
+      <section class="flex justify-center items-center w-full h-full">
         <form
-          class="flex flex-col justify-between items-center w-[50%] h-[500px] text-white bg-cyan-800 rounded-md py-4"
+          class="flex flex-col justify-between items-center w-[80%] md:w-[50%] h-[500px] text-white bg-cyan-800 rounded-md py-4"
           @submit="handleSubmit"
         >
           <div>
@@ -72,7 +72,7 @@ const handleSubmit = (event: Event): void => {
             <h1 v-else class="text-3xl">Actualizar Egreso</h1>
           </div>
 
-          <div class="flex flex-col justify-center items-center w-[50%] gap-4">
+          <div class="flex flex-col justify-center items-center w-[80%] md:w-[50%] gap-4">
             <div class="flex flex-col w-full">
               <label for="name">Nombre</label>
               <input

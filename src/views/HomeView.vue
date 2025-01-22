@@ -80,7 +80,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
 
       <section class="grid grid-cols-1 lg:grid-cols-2 w-full h-[90%]">
         <article
-          class="flex flex-col justify-start items-center w-full h-full border-r-2 border-cyan-800"
+          class="flex flex-col justify-start items-center w-full h-full border-b-2 md:border-b-0 md:border-r-2 border-cyan-800"
         >
           <div class="flex justify-center items-center w-full h-10">
             <h1 class="text-3xl">Lista de ingresos</h1>
@@ -108,7 +108,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
               />
             </div>
           </div>
-          <ul class="w-full lg:px-4">
+          <ul class="w-full px-2 lg:px-4">
             <li
               class="flex justify-between items-center w-full h-10"
               v-for="(income, index) in incomes"
@@ -155,7 +155,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
               />
             </div>
           </div>
-          <ul class="w-full lg:px-4">
+          <ul class="w-full px-2 lg:px-4">
             <li
               class="flex justify-between items-center w-full h-10"
               v-for="(expense, index) in expenses"
