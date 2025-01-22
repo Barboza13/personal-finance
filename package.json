@@ -14,7 +14,8 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "tailwindcss": "npx tailwindcss -i ./src/assets/main.css -o ./src/output.css --watch"
   },
   "dependencies": {
     "chart.js": "^4.4.7",
