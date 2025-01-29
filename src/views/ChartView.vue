@@ -53,7 +53,7 @@ onMounted(() => showChart())
         <h1 class="text-3xl md:text-2xl">Vista de graficos</h1>
       </section>
       <section class="flex justify-center items-start w-full h-[90%]">
-        <div class="flex justify-center items-center w-[80%] h-full lg:py-8">
+        <div class="flex justify-center items-center w-[80%] h-[90%]">
           <canvas id="myChart"></canvas>
         </div>
       </section>
