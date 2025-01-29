@@ -13,3 +13,8 @@ export interface Expense {
 export interface Record {
   item: Income | Expense
 }
+
+export interface Link {
+  link: string
+  text: string
+}
