@@ -21,7 +21,7 @@ const showChart = (): void => {
     new Chart(myChart, {
       type: 'line',
       data: {
-        labels: sortedRecords.map((_, index) => index + 1),
+        labels: sortedRecords.map((_, index) => index),
         datasets: [
           // Incomes chart
           {

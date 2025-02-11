@@ -92,18 +92,22 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
             <div class="flex justify-center items-center gap-2 mr-2">
               <FilterButton
                 icon="bi-graph-up"
+                icon-title="Highest amount"
                 @filterFunction="() => (incomes = sortRecordsByHighestAmount(incomes))"
               />
               <FilterButton
                 icon="bi-graph-down"
+                icon-title="Lowest amount"
                 @filterFunction="() => (incomes = sortRecordsByLowestAmount(incomes))"
               />
               <FilterButton
                 icon="hi-solid-sort-descending"
+                icon-title="Descending"
                 @filterFunction="() => (incomes = sortRecordsDescending(incomes))"
               />
               <FilterButton
                 icon="hi-solid-sort-ascending"
+                icon-title="Ascending"
                 @filterFunction="() => (incomes = sortRecordsAscending(incomes))"
               />
             </div>
@@ -139,18 +143,22 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
             <div class="flex justify-center items-center gap-2 mr-2">
               <FilterButton
                 icon="bi-graph-up"
+                icon-title="Highest amount"
                 @filterFunction="() => (expenses = sortRecordsByHighestAmount(expenses))"
               />
               <FilterButton
                 icon="bi-graph-down"
+                icon-title="Lowest amount"
                 @filterFunction="() => (expenses = sortRecordsByLowestAmount(expenses))"
               />
               <FilterButton
                 icon="hi-solid-sort-descending"
+                icon-title="Descending"
                 @filterFunction="() => (expenses = sortRecordsDescending(expenses))"
               />
               <FilterButton
                 icon="hi-solid-sort-ascending"
+                icon-title="Ascending"
                 @filterFunction="() => (expenses = sortRecordsAscending(expenses))"
               />
             </div>

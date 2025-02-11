@@ -60,7 +60,7 @@ const handleSubmit = (event: Event): void => {
     <template #default>
       <section class="flex justify-center items-center w-full h-full">
         <form
-          class="flex flex-col justify-between items-center w-[80%] md:w-[50%] h-[500px] text-white bg-cyan-800 rounded-md py-4"
+          class="flex flex-col justify-between items-center w-[80%] md:w-[50%] h-[400px] text-white bg-cyan-800 rounded-md py-4 shadow-xl shadow-black/45"
           @submit="handleSubmit"
         >
           <div>

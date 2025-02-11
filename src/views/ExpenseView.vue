@@ -64,7 +64,7 @@ const handleSubmit = (event: Event): void => {
     <template #default>
       <section class="flex justify-center items-center w-full h-full">
         <form
-          class="flex flex-col justify-between items-center w-[80%] md:w-[50%] h-[500px] text-white bg-cyan-800 rounded-md py-4"
+          class="flex flex-col justify-between items-center w-[80%] md:w-[50%] h-[400px] text-white bg-cyan-800 rounded-md py-4 shadow-xl shadow-black/45"
           @submit="handleSubmit"
         >
           <div>
@@ -109,12 +109,16 @@ const handleSubmit = (event: Event): void => {
           <div class="flex justify-center items-center w-full">
             <button
               v-if="indexParam == ''"
-              class="w-52 h-10 text-xl bg-green-500 rounded-md"
+              class="w-52 h-10 text-xl bg-green-500 hover:bg-green-600 rounded-md"
               type="submit"
             >
               Guardar
             </button>
-            <button v-else class="w-52 h-10 text-xl bg-green-500 rounded-md" type="submit">
+            <button
+              v-else
+              class="w-52 h-10 text-xl bg-green-500 hover:bg-green-600 rounded-md"
+              type="submit"
+            >
               Actualizar
             </button>
           </div>
