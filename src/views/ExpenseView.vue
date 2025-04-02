@@ -64,7 +64,7 @@ const handleSubmit = (event: Event): void => {
     <template #default>
       <section class="flex justify-center items-center w-full h-full">
         <form
-          class="flex flex-col justify-between items-center w-[80%] md:w-[50%] h-[400px] text-white bg-cyan-800 rounded-md py-4 shadow-xl shadow-black/45"
+          class="flex flex-col justify-between items-center w-[80%] md:w-[40%] h-[400px] text-white bg-cyan-800 rounded-md py-8 shadow-xl shadow-black/45"
           @submit="handleSubmit"
         >
           <div>
@@ -72,7 +72,7 @@ const handleSubmit = (event: Event): void => {
             <h1 v-else class="text-3xl">Actualizar Egreso</h1>
           </div>
 
-          <div class="flex flex-col justify-center items-center w-[80%] md:w-[50%] gap-4">
+          <div class="flex flex-col justify-center items-center w-[80%] md:w-[80%] gap-4">
             <div class="flex flex-col w-full">
               <label for="name">Nombre</label>
               <input
@@ -106,17 +106,17 @@ const handleSubmit = (event: Event): void => {
             </div>
           </div>
 
-          <div class="flex justify-center items-center w-full">
+          <div class="flex justify-center items-center w-[80%]">
             <button
               v-if="indexParam == ''"
-              class="w-52 h-10 text-xl bg-green-500 hover:bg-green-600 rounded-md"
+              class="w-full h-10 text-xl bg-green-500 hover:bg-green-600 rounded-md transition-colors duration-200 ease"
               type="submit"
             >
               Guardar
             </button>
             <button
               v-else
-              class="w-52 h-10 text-xl bg-green-500 hover:bg-green-600 rounded-md"
+              class="w-full h-10 text-xl bg-green-500 hover:bg-green-600 rounded-md transition-colors duration-200 ease"
               type="submit"
             >
               Actualizar

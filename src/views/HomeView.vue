@@ -13,10 +13,10 @@ import {
   sortRecordsDescending,
   sortRecordsAscending,
 } from '@utils/utils'
+import ShowModalTransition from '@transitions/ShowModalTransition.vue'
 
 import type { Ref } from 'vue'
 import type { Record } from '@interfaces/interfaces'
-import ShowModalTransition from '@transitions/ShowModalTransition.vue'
 
 const incomeService: IncomeService = new IncomeService()
 const expenseService: ExpenseService = new ExpenseService()
@@ -68,6 +68,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
 </script>
 
 <template>
+  <div v-show="isModalVisible" class="absolute bg-black opacity-[60%] w-full h-full z-[999]"></div>
   <MainLayout>
     <template #default>
       <section class="flex justify-center items-center w-full h-[10%] border-b-2 border-cyan-800">
@@ -90,6 +91,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
           >
             <h1 class="text-xl">Total: {{ totalIncomes }}Gs.</h1>
             <div class="flex justify-center items-center gap-2 mr-2">
+              <h1>Ver por:</h1>
               <FilterButton
                 icon="bi-graph-up"
                 icon-title="Highest amount"
@@ -122,7 +124,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
               <div class="flex justify-center items-center gap-2">
                 <EditButton :service="'income'" :index="index" />
                 <button
-                  class="w-8 h-8 bg-red-500 hover:bg-red-600 rounded-md"
+                  class="w-8 h-8 bg-red-500 hover:bg-red-600 rounded-md transition-colors duration-200 ease"
                   @click="showDeleteModal('income', index)"
                 >
                   <v-icon name="md-delete" fill="white" scale="1.3" />
@@ -141,6 +143,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
           >
             <h1 class="text-xl">Total: {{ totalExpenses }}Gs.</h1>
             <div class="flex justify-center items-center gap-2 mr-2">
+              <h1>Ver por:</h1>
               <FilterButton
                 icon="bi-graph-up"
                 icon-title="Highest amount"
