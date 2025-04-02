@@ -602,6 +602,10 @@ video {
   z-index: 999;
 }
 
+.z-\[99\] {
+  z-index: 99;
+}
+
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -953,6 +957,10 @@ video {
 
 .opacity-\[60\%\] {
   opacity: 60%;
+}
+
+.opacity-\[70\%\] {
+  opacity: 70%;
 }
 
 .shadow-xl {

@@ -39,10 +39,11 @@ const changeAsideVisibility = (): void => {
 </script>
 
 <template>
+  <div v-show="isShowAside" class="absolute bg-black opacity-[60%] w-full h-full z-[99]"></div>
   <button
     :class="[
       isShowAside ? 'translate-x-[calc(100vw*0.8)]' : 'translate-x-0',
-      'absolute transition-transform duration-100 ease-linear z-[1001] md:hidden',
+      'absolute transition-transform duration-200 ease-out z-[100] md:hidden',
     ]"
     @click="changeAsideVisibility"
   >
