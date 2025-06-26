@@ -116,7 +116,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
           </div>
           <ul class="w-full px-2 lg:px-4">
             <li
-              class="flex justify-between items-center w-full h-10"
+              class="flex justify-between items-center w-full h-10 mx-2"
               v-for="(income, index) in incomes"
               :key="index"
             >
@@ -124,7 +124,7 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
               <div class="flex justify-center items-center gap-2">
                 <EditButton :service="'income'" :index="index" />
                 <button
-                  class="w-8 h-8 bg-red-500 hover:bg-red-600 rounded-md transition-colors duration-200 ease"
+                  class="w-8 h-8 bg-red-500 hover:bg-red-600 cursor-pointer rounded-md transition-colors duration-200 ease"
                   @click="showDeleteModal('income', index)"
                 >
                   <v-icon name="md-delete" fill="white" scale="1.3" />
@@ -168,15 +168,15 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
           </div>
           <ul class="w-full px-2 lg:px-4">
             <li
-              class="flex justify-between items-center w-full h-10"
               v-for="(expense, index) in expenses"
               :key="index"
+              class="flex justify-between items-center w-full h-10 mx-2"
             >
               {{ expense.item.date }} : {{ expense.item.name }} : {{ expense.item.amount }}Gs.
               <div class="flex justify-center items-center gap-2">
                 <EditButton service="'expense'" :index="index" />
                 <button
-                  class="w-8 h-8 bg-red-500 hover:bg-red-600 rounded-md"
+                  class="w-8 h-8 bg-red-500 hover:bg-red-600 cursor-pointer rounded-md transition-colors duration-200 ease"
                   @click="showDeleteModal('expense', index)"
                 >
                   <v-icon name="md-delete" fill="white" scale="1.3" />

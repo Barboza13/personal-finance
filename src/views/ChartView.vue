@@ -26,13 +26,13 @@ const showChart = (): void => {
           // Incomes chart
           {
             label: 'Ingresos',
-            data: incomes.map((income) => income.amount),
+            data: [0, ...incomes.map((income) => income.amount)],
             borderColor: 'rgb(0, 255, 0)', // Green color
           },
           // Expenses chart
           {
             label: 'Egresos',
-            data: expenses.map((expense) => expense.amount),
+            data: [0, ...expenses.map((expense) => expense.amount)],
             borderColor: 'rgb(255, 0, 0)', // Red color
           },
         ],

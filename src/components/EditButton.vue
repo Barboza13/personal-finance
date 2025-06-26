@@ -27,7 +27,7 @@ const handleEdit = (): void => {
 
 <template>
   <button
-    class="w-8 h-8 bg-blue-500 hover:bg-blue-600 rounded-md transition-colors duration-200 ease"
+    class="w-8 h-8 bg-blue-500 hover:bg-blue-600 cursor-pointer rounded-md transition-colors duration-200 ease"
     @click="handleEdit"
   >
     <v-icon name="fa-edit" fill="white" scale="1.3" />

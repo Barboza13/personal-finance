@@ -15,7 +15,7 @@ const emit = defineEmits(['filterFunction'])
 
 <template>
   <button
-    class="w-8 h-full bg-gray-200 hover:bg-gray-300 rounded-sm transition-colors duration-200 ease"
+    class="w-8 h-full bg-gray-200 hover:bg-gray-300 cursor-pointer rounded-sm transition-colors duration-200 ease"
     @click="emit('filterFunction')"
   >
     <v-icon :name="props.icon" fill="black" scale="1.3" :title="props.iconTitle" />
