@@ -1,33 +1,5 @@
 <script lang="ts" setup>
-import ExpenseService from '@services/ExpenseService'
-import IncomeService from '@services/IncomeService'
-
-const props = defineProps({
-  service: {
-    type: String,
-    required: true,
-  },
-  index: {
-    type: Number,
-    required: true,
-  },
-})
-
-const emit = defineEmits(['hideDeleteModal', 'updateIncomes', 'updateExpenses'])
-
-const handleDelete = (index: number): void => {
-  if (index < 0) emit('hideDeleteModal')
-
-  if (props.service === 'income') {
-    new IncomeService().deleteIncome(index)
-    emit('updateIncomes')
-  } else {
-    new ExpenseService().deleteExpense(index)
-    emit('updateExpenses')
-  }
-
-  emit('hideDeleteModal')
-}
+const emit = defineEmits(['hideDeleteModal', 'handleDelete'])
 </script>
 
 <template>
@@ -44,7 +16,7 @@ const handleDelete = (index: number): void => {
       </button>
       <button
         class="w-28 h-8 text-white bg-red-500 hover:bg-red-600 rounded-lg transition-colors duration-200 ease"
-        @click="handleDelete(props.index)"
+        @click="emit('handleDelete')"
       >
         Eliminar
       </button>

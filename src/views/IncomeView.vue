@@ -3,6 +3,8 @@ import { ref, onMounted, computed, onUpdated } from 'vue'
 import { useRoute } from 'vue-router'
 import MainLayout from '@layouts/MainLayout.vue'
 import IncomeService from '@services/IncomeService'
+import MessageDialog from '@components/MessageDialog.vue'
+import ShowMessageDialogTransition from '@transitions/ShowMessageDialogTransition.vue'
 
 import type { Ref } from 'vue'
 import type { Income } from '@interfaces/interfaces'
@@ -13,9 +15,8 @@ const incomeService = new IncomeService()
 const name: Ref<string> = ref('')
 const amount: Ref<number> = ref(0)
 const date: Ref<string> = ref('')
-
-onMounted(() => checkParams())
-onUpdated(() => checkParams())
+const message: Ref<string> = ref('')
+const isMessageVisible: Ref<boolean> = ref(false)
 
 const checkParams = (): void => {
   if (indexParam.value && !Array.isArray(indexParam.value)) {
@@ -39,20 +40,34 @@ const handleSubmit = (event: Event): void => {
   event.preventDefault()
 
   if (indexParam.value && !Array.isArray(indexParam.value)) {
-    incomeService.updateIncome(
+    message.value = incomeService.updateIncome(
       { name: name.value, amount: amount.value, date: date.value } as Income,
       parseInt(indexParam.value),
     )
+
     name.value = ''
     amount.value = 0
     date.value = ''
   } else {
-    incomeService.saveIncome({ name: name.value, amount: amount.value, date: date.value } as Income)
+    message.value = incomeService.saveIncome({
+      name: name.value,
+      amount: amount.value,
+      date: date.value,
+    } as Income)
+
     name.value = ''
     amount.value = 0
     date.value = ''
   }
+
+  toggleMessageVisibility() // Show message.
+  setTimeout(() => toggleMessageVisibility(), 3000) // Hide message.
 }
+
+const toggleMessageVisibility = () => (isMessageVisible.value = !isMessageVisible.value)
+
+onMounted(() => checkParams())
+onUpdated(() => checkParams())
 </script>
 
 <template>
@@ -120,6 +135,10 @@ const handleSubmit = (event: Event): void => {
           </div>
         </form>
       </section>
+
+      <ShowMessageDialogTransition>
+        <MessageDialog v-show="isMessageVisible" :message="message" />
+      </ShowMessageDialogTransition>
     </template>
   </MainLayout>
 </template>

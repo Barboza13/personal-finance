@@ -29,31 +29,40 @@ class ExpenseService {
   /**
    * Save new expense.
    * @param expense The expense to save.
+   * @returns {string} message.
    */
-  saveExpense(expense: Expense): void {
+  saveExpense(expense: Expense): string {
     let newExpenses = JSON.stringify([...this.expenses, expense])
     localStorage.setItem(this.EXPENSE_KEY, newExpenses)
     this.getDataFromLocalStorage()
+
+    return '¡Registro guardado exitosamente!'
   }
 
   /**
    * Update expense through your index.
    * @param expense Expense to updated.
    * @param index Index of expense to updated.
+   * @returns {string} message.
    */
-  updateExpense(expense: Expense, index: number): void {
+  updateExpense(expense: Expense, index: number): string {
     this.expenses[index] = expense
     localStorage.setItem(this.EXPENSE_KEY, JSON.stringify(this.expenses))
+
+    return '¡Registro actualizado exitosamente!'
   }
 
   /**
    * Delete expense through your index.
    * @param expenseIndex Expense index.
+   * @returns {string} message.
    */
-  deleteExpense(expenseIndex: number): void {
+  deleteExpense(expenseIndex: number): string {
     this.expenses = this.expenses.filter((expense, index) => index != expenseIndex)
     localStorage.setItem(this.EXPENSE_KEY, JSON.stringify(this.expenses))
     this.getDataFromLocalStorage()
+
+    return '¡Registro eliminado exitosamente!'
   }
 
   /**

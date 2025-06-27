@@ -13,7 +13,9 @@ import {
   sortRecordsDescending,
   sortRecordsAscending,
 } from '@utils/utils'
+import MessageDialog from '@components/MessageDialog.vue'
 import ShowModalTransition from '@transitions/ShowModalTransition.vue'
+import ShowMessageDialogTransition from '@transitions/ShowMessageDialogTransition.vue'
 
 import type { Ref } from 'vue'
 import type { Record } from '@interfaces/interfaces'
@@ -24,15 +26,12 @@ const incomes: Ref<Record[]> = ref([])
 const expenses: Ref<Record[]> = ref([])
 const isModalVisible: Ref<boolean> = ref(false)
 const serviceType: Ref<string> = ref('')
-const currentIndex: Ref<number | null> = ref(null)
+const currentIndex: Ref<number> = ref(-1)
 const totalIncomes: Ref<number> = ref(0)
 const totalExpenses: Ref<number> = ref(0)
 const balanceSheet: Ref<number> = computed(() => totalIncomes.value - totalExpenses.value)
-
-onMounted(() => {
-  incomes.value = sortRecordsByDate(incomeService.getIncomes())
-  expenses.value = sortRecordsByDate(expenseService.getExpenses())
-})
+const message: Ref<string> = ref('')
+const isMessageVisible: Ref<boolean> = ref(false)
 
 // The watchs is needed to access the incomes and expenses variables after the component is mounted.
 watch(incomes, (newIncomes) => {
@@ -65,6 +64,29 @@ const showDeleteModal = (service: string, index: number | null): void => {
   isModalVisible.value = true
 }
 const hideDeleteModal = (): boolean => (isModalVisible.value = false)
+
+const handleDelete = (): void => {
+  if (currentIndex.value < 0) hideDeleteModal()
+
+  if (serviceType.value === 'income') {
+    message.value = new IncomeService().deleteIncome(currentIndex.value)
+    updateIncomes()
+  } else {
+    message.value = new ExpenseService().deleteExpense(currentIndex.value)
+    updateExpenses()
+  }
+
+  hideDeleteModal()
+  toggleMessageVisibility() // Show message.
+  setTimeout(() => toggleMessageVisibility(), 3000) // Hide message.
+}
+
+const toggleMessageVisibility = () => (isMessageVisible.value = !isMessageVisible.value)
+
+onMounted(() => {
+  incomes.value = sortRecordsByDate(incomeService.getIncomes())
+  expenses.value = sortRecordsByDate(expenseService.getExpenses())
+})
 </script>
 
 <template>
@@ -190,13 +212,14 @@ const hideDeleteModal = (): boolean => (isModalVisible.value = false)
       <ShowModalTransition>
         <DeleteModal
           v-if="isModalVisible"
-          :service="serviceType"
-          :index="currentIndex ?? -1"
-          @updateIncomes="updateIncomes"
-          @updateExpenses="updateExpenses"
           @hideDeleteModal="hideDeleteModal"
+          @handleDelete="handleDelete"
         />
       </ShowModalTransition>
+
+      <ShowMessageDialogTransition>
+        <MessageDialog v-show="isMessageVisible" :message="message" />
+      </ShowMessageDialogTransition>
     </template>
   </MainLayout>
 </template>

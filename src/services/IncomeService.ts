@@ -29,31 +29,40 @@ class IncomeService {
   /**
    * Save new income.
    * @param income The income to save.
+   * @returns {string} message.
    */
-  saveIncome(income: Income): void {
+  saveIncome(income: Income): string {
     let newIncomes = JSON.stringify([...this.incomes, income])
     localStorage.setItem(this.INCOME_KEY, newIncomes)
     this.getDataFromLocalStorage()
+
+    return '¡Registro guardado exitosamente!'
   }
 
   /**
    * Update income through your index.
    * @param income Income to updated.
    * @param index Index of income to updated.
+   * @returns {string} message.
    */
-  updateIncome(income: Income, index: number): void {
+  updateIncome(income: Income, index: number): string {
     this.incomes[index] = income
     localStorage.setItem(this.INCOME_KEY, JSON.stringify(this.incomes))
+
+    return '¡Registro actualizado exitosamente!'
   }
 
   /**
    * Delete income through your index.
    * @param incomeIndex Income index.
+   * @returns {string} message.
    */
-  deleteIncome(incomeIndex: number): void {
+  deleteIncome(incomeIndex: number): string {
     this.incomes = this.incomes.filter((income, index) => index != incomeIndex)
     localStorage.setItem(this.INCOME_KEY, JSON.stringify(this.incomes))
     this.getDataFromLocalStorage()
+
+    return '¡Registro eliminado exitosamente!'
   }
 
   /**
