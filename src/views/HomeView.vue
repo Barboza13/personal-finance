@@ -93,52 +93,52 @@ onMounted(() => {
   <div v-show="isModalVisible" class="absolute bg-black opacity-[60%] w-full h-full z-[999]"></div>
   <MainLayout>
     <template #default>
-      <section class="flex justify-center items-center w-full h-[10%] border-b-2 border-cyan-800">
+      <section class="flex justify-center items-center w-full h-[10%] border-b border-cyan-800">
         <h1 class="text-2xl">
           Balance general:
           <span v-if="balanceSheet >= 0" class="text-green-500">+{{ balanceSheet }}Gs.</span>
-          <span v-else class="text-red-500">{{ balanceSheet }}Gs.</span>
+          <span v-else class="text-red-500">-{{ balanceSheet }}Gs.</span>
         </h1>
       </section>
 
       <section class="grid grid-cols-1 lg:grid-cols-2 w-full h-[90%]">
         <article
-          class="flex flex-col justify-start items-center w-full h-full border-b-2 md:border-b-0 md:border-r-2 border-cyan-800"
+          class="flex flex-col justify-start items-center w-full overflow-hidden border-b lg:border-b-0 lg:border-r border-cyan-800"
         >
-          <div class="flex justify-center items-center w-full h-10">
-            <h1 class="text-3xl">Lista de ingresos</h1>
-          </div>
           <div
-            class="flex justify-between items-center w-full h-10 border-b-2 border-cyan-800 lg:pl-2"
+            class="flex flex-col justify-center items-center w-full border-b border-cyan-800 p-1"
           >
-            <h1 class="text-xl">Total: {{ totalIncomes }}Gs.</h1>
-            <div class="flex justify-center items-center gap-2 mr-2">
-              <h1>Ver por:</h1>
-              <FilterButton
-                icon="bi-graph-up"
-                icon-title="Highest amount"
-                @filterFunction="() => (incomes = sortRecordsByHighestAmount(incomes))"
-              />
-              <FilterButton
-                icon="bi-graph-down"
-                icon-title="Lowest amount"
-                @filterFunction="() => (incomes = sortRecordsByLowestAmount(incomes))"
-              />
-              <FilterButton
-                icon="hi-solid-sort-descending"
-                icon-title="Descending"
-                @filterFunction="() => (incomes = sortRecordsDescending(incomes))"
-              />
-              <FilterButton
-                icon="hi-solid-sort-ascending"
-                icon-title="Ascending"
-                @filterFunction="() => (incomes = sortRecordsAscending(incomes))"
-              />
+            <h1 class="text-3xl text-center">Lista de ingresos</h1>
+            <div class="flex justify-between items-center h-full w-full">
+              <h1 class="text-xl">Total: {{ totalIncomes }}Gs.</h1>
+              <div class="flex justify-center items-center gap-2 mr-2">
+                <h1>Ver por:</h1>
+                <FilterButton
+                  icon="bi-graph-up"
+                  icon-title="Highest amount"
+                  @filterFunction="() => (incomes = sortRecordsByHighestAmount(incomes))"
+                />
+                <FilterButton
+                  icon="bi-graph-down"
+                  icon-title="Lowest amount"
+                  @filterFunction="() => (incomes = sortRecordsByLowestAmount(incomes))"
+                />
+                <FilterButton
+                  icon="hi-solid-sort-descending"
+                  icon-title="Descending"
+                  @filterFunction="() => (incomes = sortRecordsDescending(incomes))"
+                />
+                <FilterButton
+                  icon="hi-solid-sort-ascending"
+                  icon-title="Ascending"
+                  @filterFunction="() => (incomes = sortRecordsAscending(incomes))"
+                />
+              </div>
             </div>
           </div>
-          <ul class="w-full px-2 lg:px-4">
+          <ul class="lg:grow h-80 w-full overflow-y-auto px-2">
             <li
-              class="flex justify-between items-center w-full h-10 mx-2"
+              class="flex justify-between items-center w-full min-h-10"
               v-for="(income, index) in incomes"
               :key="index"
             >
@@ -156,43 +156,43 @@ onMounted(() => {
           </ul>
         </article>
 
-        <article class="flex flex-col justify-start items-center w-full h-full">
-          <div class="flex justify-center items-center w-full h-10">
-            <h1 class="text-3xl">Lista de egresos</h1>
-          </div>
+        <article class="flex flex-col justify-start items-center w-full overflow-hidden">
           <div
-            class="flex justify-between items-center w-full h-10 border-b-2 border-cyan-800 lg:pl-2"
+            class="flex flex-col justify-center items-center w-full border-b border-cyan-800 p-1"
           >
-            <h1 class="text-xl">Total: {{ totalExpenses }}Gs.</h1>
-            <div class="flex justify-center items-center gap-2 mr-2">
-              <h1>Ver por:</h1>
-              <FilterButton
-                icon="bi-graph-up"
-                icon-title="Highest amount"
-                @filterFunction="() => (expenses = sortRecordsByHighestAmount(expenses))"
-              />
-              <FilterButton
-                icon="bi-graph-down"
-                icon-title="Lowest amount"
-                @filterFunction="() => (expenses = sortRecordsByLowestAmount(expenses))"
-              />
-              <FilterButton
-                icon="hi-solid-sort-descending"
-                icon-title="Descending"
-                @filterFunction="() => (expenses = sortRecordsDescending(expenses))"
-              />
-              <FilterButton
-                icon="hi-solid-sort-ascending"
-                icon-title="Ascending"
-                @filterFunction="() => (expenses = sortRecordsAscending(expenses))"
-              />
+            <h1 class="text-3xl text-center">Lista de egresos</h1>
+            <div class="flex justify-between items-center h-full w-full">
+              <h1 class="text-xl">Total: {{ totalExpenses }}Gs.</h1>
+              <div class="flex justify-center items-center gap-2 mr-2">
+                <h1>Ver por:</h1>
+                <FilterButton
+                  icon="bi-graph-up"
+                  icon-title="Highest amount"
+                  @filterFunction="() => (expenses = sortRecordsByHighestAmount(expenses))"
+                />
+                <FilterButton
+                  icon="bi-graph-down"
+                  icon-title="Lowest amount"
+                  @filterFunction="() => (expenses = sortRecordsByLowestAmount(expenses))"
+                />
+                <FilterButton
+                  icon="hi-solid-sort-descending"
+                  icon-title="Descending"
+                  @filterFunction="() => (expenses = sortRecordsDescending(expenses))"
+                />
+                <FilterButton
+                  icon="hi-solid-sort-ascending"
+                  icon-title="Ascending"
+                  @filterFunction="() => (expenses = sortRecordsAscending(expenses))"
+                />
+              </div>
             </div>
           </div>
-          <ul class="w-full px-2 lg:px-4">
+          <ul class="lg:grow h-80 w-full overflow-y-auto px-2">
             <li
+              class="flex justify-between items-center w-full min-h-10"
               v-for="(expense, index) in expenses"
               :key="index"
-              class="flex justify-between items-center w-full h-10 mx-2"
             >
               {{ expense.item.date }} : {{ expense.item.name }} : {{ expense.item.amount }}Gs.
               <div class="flex justify-center items-center gap-2">
