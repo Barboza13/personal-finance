@@ -9,9 +9,9 @@ const props = defineProps({
 
 <template>
   <div
-    class="fixed right-5 bottom-10 flex justify-center items-center h-14 w-96 bg-cyan-800 rounded-md shadow-xl shadow-black/45 will-change-transform z-100"
+    class="fixed right-5 bottom-10 flex justify-center items-center h-14 w-max md:w-96 bg-cyan-800 rounded-md shadow-xl shadow-black/45 will-change-transform z-100 px-2 md:p-0"
   >
-    <p class="text-xl text-white">{{ props.message }}</p>
+    <p class="text-md md:text-xl text-white">{{ props.message }}</p>
   </div>
 </template>
 
