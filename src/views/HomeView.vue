@@ -90,14 +90,17 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-show="isModalVisible" class="absolute bg-black opacity-[60%] w-full h-full z-[999]"></div>
+  <div
+    v-show="isModalVisible"
+    class="absolute bg-black opacity-[60%] w-full h-screen z-[999]"
+  ></div>
   <MainLayout>
     <template #default>
       <section class="flex justify-center items-center w-full h-[10%] border-b border-cyan-800">
         <h1 class="text-2xl">
           Balance general:
           <span v-if="balanceSheet >= 0" class="text-green-500">+{{ balanceSheet }}Gs.</span>
-          <span v-else class="text-red-500">-{{ balanceSheet }}Gs.</span>
+          <span v-else class="text-red-500">{{ balanceSheet }}Gs.</span>
         </h1>
       </section>
 
