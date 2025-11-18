@@ -9,6 +9,10 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [vue(), vueDevTools(), tailwindcss()],
+  server: {
+    host: '0.0.0.0',
+    port: 5173,
+  },
   test: {
     include: ['**/*.{test,spec}.?(c|m)[jt]s?(x)'],
     exclude: [
