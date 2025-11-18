@@ -92,6 +92,7 @@ onUpdated(() => checkParams())
                 id="name"
                 name="name"
                 v-model="name"
+                required
               />
             </div>
             <div class="flex flex-col w-full">
@@ -103,6 +104,7 @@ onUpdated(() => checkParams())
                 id="amount"
                 name="amount"
                 v-model="amount"
+                required
               />
             </div>
             <div class="flex flex-col w-full">
@@ -113,6 +115,7 @@ onUpdated(() => checkParams())
                 id="date"
                 name="date"
                 v-model="date"
+                required
               />
             </div>
           </div>
