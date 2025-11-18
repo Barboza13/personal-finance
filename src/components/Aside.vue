@@ -27,7 +27,7 @@ const links: Link[] = [
     href: '/expenses',
   },
   {
-    name: 'Graficos',
+    name: 'Gráficos',
     href: '/charts',
   },
 ]
@@ -39,11 +39,11 @@ const changeAsideVisibility = (): void => {
 </script>
 
 <template>
-  <div v-show="isShowAside" class="absolute bg-black opacity-[60%] w-full h-full z-[99]"></div>
+  <div v-show="isShowAside" class="absolute bg-black opacity-[60%] w-full h-screen z-[99]"></div>
   <button
     :class="[
-      isShowAside ? 'translate-x-[calc(100vw*0.8)]' : 'translate-x-0',
-      'absolute transition-transform duration-200 ease-out z-[100] md:hidden',
+      isShowAside ? 'translate-x-[calc(100vw*0.8)] top-0 left-0' : 'translate-x-0 top-5 left-3',
+      'absolute md:hidden transition-transform duration-200 ease-out z-[100]',
     ]"
     @click="changeAsideVisibility"
   >
@@ -55,7 +55,7 @@ const changeAsideVisibility = (): void => {
       class="flex flex-col justify-start items-center w-[80%] h-[100vh] absolute bg-cyan-800 z-[100]"
     >
       <section class="mt-6">
-        <h1 class="text-3xl text-white">Navegacion</h1>
+        <h1 class="text-3xl text-white">Navegación</h1>
       </section>
       <section class="w-full px-4">
         <ul class="flex flex-col justify-center w-full h-full text-3xl text-white mt-6 gap-4">
