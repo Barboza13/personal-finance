@@ -12,6 +12,7 @@ export interface Expense {
 
 export interface Record {
   item: Income | Expense
+  type?: string
 }
 
 export interface Link {
