@@ -11,7 +11,9 @@ export const sortRecordsByDate = (incomes?: Income[], expenses?: Expense[]): Rec
   record.push(...(incomes || []).map((item) => ({ item, type: 'income' })))
   record.push(...(expenses || []).map((item) => ({ item, type: 'expense' })))
 
-  return record.sort((a, b) => new Date(b.item.date).getTime() - new Date(a.item.date).getTime())
+  return record.sort(
+    (left, right) => new Date(left.item.date).getTime() - new Date(right.item.date).getTime(),
+  )
 }
 
 /**
