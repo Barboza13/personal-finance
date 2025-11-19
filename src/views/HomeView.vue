@@ -139,9 +139,13 @@ onMounted(() => {
               </div>
             </div>
           </div>
-          <ul class="lg:grow h-80 w-full overflow-y-auto px-2">
+          <ul class="lg:grow h-80 w-full overflow-y-auto">
             <li
-              class="flex justify-between items-center w-full min-h-10"
+              :class="[
+                'flex justify-between items-center w-full min-h-10 px-2',
+                { 'bg-gray-200': index % 2 === 1 },
+              ]"
+              v-if="incomes.length > 0"
               v-for="(income, index) in incomes"
               :key="index"
             >
@@ -155,6 +159,9 @@ onMounted(() => {
                   <v-icon name="md-delete" fill="white" scale="1.3" />
                 </button>
               </div>
+            </li>
+            <li v-else class="flex justify-center items-center h-full text-xl text-gray-600 py-8">
+              No hay registros.
             </li>
           </ul>
         </article>
@@ -191,9 +198,13 @@ onMounted(() => {
               </div>
             </div>
           </div>
-          <ul class="lg:grow h-80 w-full overflow-y-auto px-2">
+          <ul class="lg:grow h-80 w-full overflow-y-auto">
             <li
-              class="flex justify-between items-center w-full min-h-10"
+              :class="[
+                'flex justify-between items-center w-full min-h-10 px-2',
+                { 'bg-gray-100': index % 2 === 0 },
+              ]"
+              v-if="expenses.length > 0"
               v-for="(expense, index) in expenses"
               :key="index"
             >
@@ -207,6 +218,9 @@ onMounted(() => {
                   <v-icon name="md-delete" fill="white" scale="1.3" />
                 </button>
               </div>
+            </li>
+            <li v-else class="flex justify-center items-center h-full text-xl text-gray-600 py-8">
+              No hay registros.
             </li>
           </ul>
         </article>
